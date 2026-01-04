@@ -34,46 +34,101 @@ export default function Home() {
   }
 
   return (
-    <main style={{ padding: "2rem", maxWidth: "600px" }}>
-      <h1>Pastebin Lite</h1>
+    <div
+      style={{
+        background: "white",
+        padding: "2rem",
+        borderRadius: "12px",
+        width: "100%",
+        maxWidth: "520px",
+        boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+        animation: "fadeSlideUp 0.6s ease-out",
+      }}
+    >
+      <h1 style={{ textAlign: "center", marginBottom: "1rem" }}>
+        Pastebin Lite
+      </h1>
 
       <textarea
         rows={6}
-        style={{ width: "100%" }}
-        placeholder="Enter paste content"
+        placeholder="Enter your paste content here..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        style={{
+          width: "100%",
+          padding: "0.75rem",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+          resize: "vertical",
+        }}
       />
 
-      <div style={{ marginTop: "1rem" }}>
-        <input
-          type="number"
-          placeholder="TTL seconds (optional)"
-          value={ttl}
-          onChange={(e) => setTtl(e.target.value)}
-        />
-      </div>
+      <input
+        type="number"
+        placeholder="TTL (seconds) – optional"
+        value={ttl}
+        onChange={(e) => setTtl(e.target.value)}
+        style={{
+          width: "100%",
+          marginTop: "0.75rem",
+          padding: "0.5rem",
+          borderRadius: "6px",
+          border: "1px solid #ccc",
+        }}
+      />
 
-      <div style={{ marginTop: "0.5rem" }}>
-        <input
-          type="number"
-          placeholder="Max views (optional)"
-          value={maxViews}
-          onChange={(e) => setMaxViews(e.target.value)}
-        />
-      </div>
+      <input
+        type="number"
+        placeholder="Max views – optional"
+        value={maxViews}
+        onChange={(e) => setMaxViews(e.target.value)}
+        style={{
+          width: "100%",
+          marginTop: "0.5rem",
+          padding: "0.5rem",
+          borderRadius: "6px",
+          border: "1px solid #ccc",
+        }}
+      />
 
-      <button style={{ marginTop: "1rem" }} onClick={createPaste}>
+      <button
+        onClick={createPaste}
+        className="button-animate"
+        style={{
+          marginTop: "1rem",
+          width: "100%",
+          padding: "0.75rem",
+          borderRadius: "8px",
+          border: "none",
+          background: "#667eea",
+          color: "white",
+          fontSize: "1rem",
+          cursor: "pointer",
+        }}
+      >
         Create Paste
       </button>
 
       {result && (
-        <p>
-          Paste URL: <a href={result}>{result}</a>
+  <p
+    style={{
+      marginTop: "1rem",
+      wordBreak: "break-all",
+      animation: "popIn 0.4s ease-out",
+    }}
+  >
+
+           Paste URL:
+          <br />
+          <a href={result} target="_blank">
+            {result}
+          </a>
         </p>
       )}
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </main>
+      {error && (
+        <p style={{ marginTop: "1rem", color: "red" }}>{error}</p>
+      )}
+    </div>
   );
 }
